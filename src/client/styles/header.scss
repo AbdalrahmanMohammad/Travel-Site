@@ -1,9 +1,42 @@
 header {
     display: flex;
     justify-content: center;
-    padding: 30px ;
+    padding: 30px;
     color: white;
     background-color: rgb(8, 8, 71);
     font-size: 70px;
     font-weight: bold;
+    position: relative;
+
+    i {
+        position: absolute;
+        bottom: 5px;
+        font-size: 24px;
+        left: 40px;
+        animation: movePlane 8s linear  infinite;
+    }
+}
+
+@keyframes movePlane {
+    0% {
+        left: 40px;
+        transform: rotateZ(0);
+    }
+
+    45% {
+        left: calc( 100% - 40px);
+        transform: rotateZ(0);
+    }
+    50%{
+        transform: rotateZ(180deg);
+        left: calc( 100% - 40px);
+    }
+    95%{
+        transform: rotateZ(180deg);
+        left: 40px;
+    }
+    100%{
+        transform: rotateZ(0);
+        left: 40px;
+    }
 }

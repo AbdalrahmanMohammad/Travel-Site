@@ -29,7 +29,6 @@ main {
 
             .info {
                 padding: 15px 0;
-                /* White overlay with 10% opacity */
                 @include flex-column(20px);
                 justify-content: space-evenly;
 

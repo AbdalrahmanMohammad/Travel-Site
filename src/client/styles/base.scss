@@ -69,7 +69,8 @@ main {
                     justify-content: center;
                     gap: 40px;
                 }
-                .desc{
+
+                .desc {
                     text-align: center;
                 }
             }
@@ -84,7 +85,7 @@ main {
                 outline: none;
                 border: none;
                 color: white;
-                font-size: 25;
+                font-size: 18px;
                 font-weight: bold;
                 padding: 20px;
                 border-radius: 40px;
@@ -111,7 +112,6 @@ main {
     }
 }
 
-
 .image {
     width: 100%;
     height: 400px;
@@ -119,4 +119,78 @@ main {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+.inputs {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+
+    button {
+        cursor: pointer;
+        outline: none;
+        border: none;
+        color: white;
+        font-size: 25px;
+        font-weight: bold;
+        padding: 20px;
+        border-radius: 40px;
+        background-color: rgb(5, 5, 53);
+
+        &:hover {
+            transform: scale(1.05);
+        }
+    }
+
+    form {
+        display: flex;
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        background-color: rgb(12, 12, 87);
+        box-shadow: 1px 1px 20px 7px black;
+        border-radius: 30px;
+        transform: translate(-50%, -50%);
+        padding: 30px;
+
+        i {
+            transform: translate(-15px, -15px);
+            font-size: 20px;
+            cursor: pointer;
+            width: fit-content;
+
+
+            &:hover {
+                transform: scale(1.1) translate(-15px, -15px);
+            }
+        }
+
+        .texts {
+            @include flex-column(20px);
+            margin-top: 20px;
+            font-weight: bold;
+            text-align: center;
+
+            input {
+                font-size: 18px;
+                outline: none;
+                background-color: transparent;
+                border: 1px solid blue;
+                border-radius: 20px;
+                padding: 10px 20px;
+                color: white;
+                &::placeholder{
+                    color: rgba(255, 255, 255, 0.349);
+                }
+            }
+        }
+
+        button {
+            margin-top: 20px;
+            font-size: 16px;
+            padding: 15px;
+        }
+    }
 }

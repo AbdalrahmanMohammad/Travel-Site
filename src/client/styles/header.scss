@@ -13,7 +13,13 @@ header {
         bottom: 5px;
         font-size: 24px;
         left: 40px;
-        animation: movePlane 8s linear  infinite;
+        animation: movePlane 8s linear infinite;
+    }
+    @media (max-width: 800px) {
+        font-size: 40px;
+        i{
+            font-size: 20px;
+        }
     }
 }
 
@@ -24,18 +30,21 @@ header {
     }
 
     45% {
-        left: calc( 100% - 40px);
+        left: calc(100% - 40px);
         transform: rotateZ(0);
     }
-    50%{
+
+    50% {
         transform: rotateZ(180deg);
-        left: calc( 100% - 40px);
+        left: calc(100% - 40px);
     }
-    95%{
+
+    95% {
         transform: rotateZ(180deg);
         left: 40px;
     }
-    100%{
+
+    100% {
         transform: rotateZ(0);
         left: 40px;
     }

@@ -10,6 +10,12 @@ body {
     gap: $gap;
 }
 
+@mixin small-screen {
+    @media (max-width: 800px) {
+        @content;
+    }
+}
+
 
 main {
     margin-top: 40px;
@@ -41,6 +47,10 @@ main {
                     div:nth-child(1) {
                         font-weight: bold;
                         align-self: center;
+
+                        @include small-screen {
+                            font-size: 90%;
+                        }
                     }
                 }
 
@@ -49,11 +59,18 @@ main {
 
             .weather {
                 align-self: center;
+                width: 100%;
                 @include flex-column(10px);
+
 
                 .temp {
                     display: flex;
-                    justify-content: space-evenly;
+                    width: 100%;
+                    justify-content: center;
+                    gap: 40px;
+                }
+                .desc{
+                    text-align: center;
                 }
             }
         }
@@ -82,6 +99,15 @@ main {
                 }
             }
         }
+
+        @include small-screen {
+            width: 100%;
+        }
+    }
+
+    @include small-screen {
+        flex-direction: column;
+        text-align: center;
     }
 }
 

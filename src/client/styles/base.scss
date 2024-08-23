@@ -25,16 +25,24 @@ main {
 
         &:last-child {
             padding: 20px 5px;
-            @include flex-column(30px);
+            @include flex-column(25px);
 
             .info {
+                padding: 15px 0;
+                /* White overlay with 10% opacity */
                 @include flex-column(20px);
                 justify-content: space-evenly;
 
-                &:last-child div:nth-child(2):not(:last-child) {
-                    font-weight: bold;
-                    align-self: center;
 
+                &:last-child {
+                    border-radius: 50px;
+                    background-color: rgba(255, 255, 255, 0.03);
+
+
+                    div:nth-child(1) {
+                        font-weight: bold;
+                        align-self: center;
+                    }
                 }
 
                 flex-grow: 1;
@@ -54,22 +62,23 @@ main {
         .buttons {
             display: flex;
             justify-content: space-evenly;
+
             button {
                 cursor: pointer;
                 outline: none;
                 border: none;
-                background-color: transparent;
                 color: white;
                 font-size: 25;
                 font-weight: bold;
-                // border: 1px solid blue;
                 padding: 20px;
                 border-radius: 40px;
                 background-color: rgb(5, 5, 53);
-                &:last-child{
+
+                &:last-child {
                     background-color: rgb(31 31 89);
                 }
-                &:hover{
+
+                &:hover {
                     transform: scale(1.05);
                 }
             }

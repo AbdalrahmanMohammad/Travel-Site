@@ -9,57 +9,36 @@
 <body>
 
     <header>
-        <div class="">
-            Logo
-        </div>
-        <div class="">
-            navigation
-        </div>
+        Travel Planner
     </header>
 
     <main>
         <section>
-            <form id="urlForm">
-                <input id="name" type="text" name="url" placeholder="Enter URL" required>
-                <button id="submitButton" type="submit">Submit</button>
-            </form>
-
+            <div class="image"></div>
         </section>
 
         <section>
-            <strong>Form Results:</strong>
-            <div id="results">
-                <div class="top">
-                    <div class="agreement">
-                        <span>agreement</span>
-                        <span></span>
-                    </div>
-                    <div class="confidence">
-                        <span>confidence</span>
-                        <span></span>
-                    </div>
-                    <div class="score_tag">
-                        <span>score_tag</span>
-                        <span></span>
-                    </div>
-                    <div class="subjectivity">
-                        <span>subjectivity</span>
-                        <span></span>
-                    </div>
-                </div>
-                <div class="bottom">
-                    <span>snippet text</span>
-                    <span></span>
+            <div class="info">
+                <div class="dest">Trip to: <span>Gaza, Palestine</span></div>
+                <div class="dep">Departing: <span>7/10/2023</span></div>
+            </div>
+            <div class="buttons">
+                <button class="save">Save Trip</button>
+                <button class="remove">Remove Trip</button>
+            </div>
+            <div class="info">
+                <div class="rem-time">Nablus, Palestine is 10 days aways</div>
+                <div>Typical weather for then is</div>
+                <div class="weather">
+                    <div class="temp"><span>max: 33</span><span>min: 22</span></div>
+                    <div class="desc">Mostly cloudy, some rain</div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer>
-        <p>This is a footer</p>
-    </footer>
 
-    <script>
+    <!-- <script>
         // Check that service workers are supported
         if ('serviceWorker' in navigator) {
             // Use the window load event to keep the page load performant
@@ -67,7 +46,7 @@
                 navigator.serviceWorker.register('/service-worker.js');
             });
         }
-    </script>
+    </script> -->
 </body>
 
 </html>

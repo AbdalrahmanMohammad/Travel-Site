@@ -146,7 +146,7 @@ main {
         display: flex;
         display: none;
         flex-direction: column;
-        position: absolute;
+        position: fixed; // so it always appear in the middle of the screen
         left: 50%;
         top: 50%;
         background-color: rgb(12, 12, 87);
@@ -181,7 +181,8 @@ main {
                 border-radius: 20px;
                 padding: 10px 20px;
                 color: white;
-                &::placeholder{
+
+                &::placeholder {
                     color: rgba(255, 255, 255, 0.349);
                 }
             }

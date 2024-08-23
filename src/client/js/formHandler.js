@@ -1,41 +1,25 @@
 // Replace checkForName with a function that checks the URL
 import { checkForUrl } from './urlChecker'
 
-const agreement = document.querySelector(".agreement span:last-child");
-const confidence = document.querySelector(".confidence span:last-child");
-const score_tag = document.querySelector(".score_tag span:last-child");
-const subjectivity = document.querySelector(".subjectivity span:last-child");
-const result = document.querySelector(".bottom span:last-child");
+const addDest = document.querySelector("#add-dist");
+const closeDest = document.querySelector(".inputs form i");
+const form = document.querySelector("form");
 
-const form = document.getElementById('urlForm');
-if (form) {
-    form.addEventListener('submit', handleSubmit);
+function showHide() {
+    if (form.style.display == "flex")
+        form.style.display = "none";
+    else
+        form.style.display = "flex";
 }
-function handleSubmit(event) {
-    event.preventDefault();
 
-    // Get the URL from the input field
-    const formText = document.getElementById('name').value;
-
-    // If the URL is valid, send it to the server using the serverURL constant above
-    if (checkForUrl(formText)) {
-        postData('http://localhost:8000/analyze', { "url": formText }).then(data => {
-            console.log('Received data:', data);
-            agreement.innerHTML = data.agreement;
-            confidence.innerHTML = data.confidence;
-            score_tag.innerHTML = data.score_tag;
-            subjectivity.innerHTML = data.subjectivity;
-            result.innerHTML = data.sentence_list[0].text;
-        })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-    }
-    else {
-        alert("please enter a valid URL");
+document.querySelector("body").addEventListener("click", (e) => {
+    // if the user clicks on addDest it will toggle the form or if he clicks on the X in the form 
+    // or if the form is visible and the user clicks anywhere outside it
+    if (e.target == addDest || e.target == closeDest || form.style.display === "flex" && !form.contains(e.target)) {
+        showHide();
     }
 
-}
+});
 
 // Function to send data to the server
 const postData = async (url = '', data = {}) => {
@@ -57,6 +41,6 @@ const postData = async (url = '', data = {}) => {
 }
 
 // Export the handleSubmit function
-export { handleSubmit };
+// export { handleSubmit };
 export { postData };
 

@@ -12,14 +12,15 @@ function showHide() {
         form.style.display = "flex";
 }
 
-document.querySelector("body").addEventListener("click", (e) => {
+document.querySelector("body").addEventListener("click", handleBodyClick);
+function handleBodyClick(e) {
     // if the user clicks on addDest it will toggle the form or if he clicks on the X in the form 
     // or if the form is visible and the user clicks anywhere outside it
     if (e.target == addDest || e.target == closeDest || form.style.display === "flex" && !form.contains(e.target)) {
         showHide();
     }
+};
 
-});
 
 // Function to send data to the server
 const postData = async (url = '', data = {}) => {
@@ -39,6 +40,8 @@ const postData = async (url = '', data = {}) => {
         console.log("error", error);
     }
 }
+
+
 
 // Export the handleSubmit function
 // export { handleSubmit };

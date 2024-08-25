@@ -4,6 +4,7 @@ import { checkForDate } from './dateChecker'
 const addDest = document.querySelector("#add-dist");
 const closeDest = document.querySelector(".inputs form i");
 const form = document.querySelector("form");
+const popup = document.querySelector(".popup");
 
 function showHide() {// function to show and hide the form from the screen
     if (form.style.display == "flex")
@@ -95,20 +96,21 @@ document.querySelector("body").addEventListener("click", handleLocalStorage);
 function handleLocalStorage(e) {
     if (e.target == document.querySelector(".save")) {
         localStorage.setItem("main", document.querySelector("main").innerHTML);//save the whole main element into storage
-        const saved = document.querySelector(".saved");
-        saved.style.opacity = 1;// show a pop up to indicate that is is saved
-        saved.style.display="block";
+        popup.innerHTML="Saved!";
+        popup.style.color="green";
+        popup.style.opacity = 1;// show a pop up to indicate that is is saved
         setTimeout(() => {
-            saved.style.opacity = 0;
+            popup.style.opacity = 0;
         }, 1000);
     }
     else if (e.target == document.querySelector(".remove")) {
         localStorage.removeItem('main');// remove it from local storage
         const removed = document.querySelector(".removed");
-        removed.style.opacity = 1;// show a pop up to indicate that is is removed
-        removed.style.display="block";
+        popup.innerHTML="Removed!";
+        popup.style.color="red";
+        popup.style.opacity = 1;// show a pop up to indicate that is is removed
         setTimeout(() => {
-            removed.style.opacity = 0;
+            popup.style.opacity = 0;
         }, 1000);
     }
 }
@@ -116,11 +118,9 @@ function handleLocalStorage(e) {
 document.addEventListener('DOMContentLoaded', function () {// on page load if there is main in local storage then attach it to innerhtml
     if (localStorage.getItem('main') !== null) {
         document.querySelector("main").innerHTML = localStorage.getItem("main");
+        popup.style.display="block";
     }
 });
-
-
-
 
 // Export the handleSubmit function
 export { handleSubmit };

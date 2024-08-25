@@ -196,21 +196,7 @@ main {
     }
 }
 
-.saved{
-    position: fixed;
-    top: 100px;
-    color: green;
-    font-size: 70px;
-    font-weight: bold;
-    width: 100%;
-    text-align: center;
-    z-index: 100;
-    background-color: rgba(255, 255, 255, 0.377);
-    transition: 1s;
-    opacity: 0;
-    display: none;
-}
-.removed{
+.popup{
     position: fixed;
     top: 100px;
     color: red;
@@ -220,7 +206,7 @@ main {
     text-align: center;
     z-index: 100;
     background-color: rgba(255, 255, 255, 0.377);
-    transition: 1s;
+    transition: opacity 1s; /* Apply transition only to opacity */
     opacity: 0;
     display: none;
 }

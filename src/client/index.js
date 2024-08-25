@@ -1,6 +1,6 @@
 // js files
 import { handleSubmit } from './js/formHandler'
-import { checkForUrl } from './js/urlChecker'
+import { checkForDate } from './js/dateChecker'
 
 // sass files
 import './styles/resets.scss'

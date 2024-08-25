@@ -1,11 +1,11 @@
-// Replace checkForName with a function that checks the URL
-import { checkForUrl } from './urlChecker'
+
+import { checkForDate } from './dateChecker'
 
 const addDest = document.querySelector("#add-dist");
 const closeDest = document.querySelector(".inputs form i");
 const form = document.querySelector("form");
 
-function showHide() {
+function showHide() {// function to show and hide the form from the screen
     if (form.style.display == "flex")
         form.style.display = "none";
     else
@@ -13,14 +13,13 @@ function showHide() {
 }
 
 document.querySelector("body").addEventListener("click", handleBodyClick);
-function handleBodyClick(e) {
+function handleBodyClick(e) {// show the form if the user press addDest, and hide it on any click outside the form if it is visble
     // if the user clicks on addDest it will toggle the form or if he clicks on the X in the form 
     // or if the form is visible and the user clicks anywhere outside it
     if (e.target == addDest || e.target == closeDest || form.style.display === "flex" && !form.contains(e.target)) {
         showHide();
     }
 };
-
 
 // Function to send data to the server
 const postData = async (url = '', data = {}) => {
@@ -41,9 +40,60 @@ const postData = async (url = '', data = {}) => {
     }
 }
 
+if (form) {
+    console.log("yees");
+    form.addEventListener('submit', handleSubmit);
+}
+function handleSubmit(event) {
+    console.log("hello");
+    event.preventDefault();
+
+    // Get the Input date
+    const city = document.getElementById('city').value;
+    const date = document.getElementById('date').value;
+    const dest = document.querySelector(".dest span");
+    const dep = document.querySelector(".dep span");
+    const max = document.querySelector(".temp span:first-child");
+    const min = document.querySelector(".temp span:last-child");
+    const weatherDesc = document.querySelector(".desc");
+    const remindingTime = document.querySelector(".rem-time");
+    const image=document.querySelector(".image");
+
+    // If the date is within 16 days from this day complete the process
+    if (checkForDate(date)) {
+        console.log("in the cluase");
+        postData('http://localhost:8000/getAll', { "city": city, "date": date }).then(data => {
+            console.log('Received data:', data);
+            let remDays = Math.ceil((new Date(date) - new Date()) / (1000 * 60 * 60 * 24));// calculate days difference between now and the input data
+            dest.innerHTML = `${city}, ${data.country}`;
+            dep.innerHTML = date;
+            max.innerHTML = `max: ${data.forecast.max}`;
+            min.innerHTML = `min: ${data.forecast.min}`;
+            weatherDesc.innerHTML = data.forecast.desc;
+            remindingTime.innerHTML = `${city}, ${data.country} is ${remDays} day${remDays > 1 ? 's' : ''} away`;
+            if(data.photo==-1)// no image found
+            {
+                // if there is no image found show an image with this sentence on it (no image found)
+                image.style.backgroundImage = `url("https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/330px-No-Image-Placeholder.svg.png?20200912122019")`;
+            }
+            else{
+                image.style.backgroundImage = `url("${data.photo}")`;
+
+            }
+
+        })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    }
+    else {
+        alert("please enter a valid date (less the 16 days)");
+    }
+
+}
 
 
 // Export the handleSubmit function
-// export { handleSubmit };
+export { handleSubmit };
 export { postData };
 

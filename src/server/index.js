@@ -152,3 +152,5 @@ app.listen(8000, function () {
 });
 
 
+// Export the app for testing purposes
+module.exports = app;

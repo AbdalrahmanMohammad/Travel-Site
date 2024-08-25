@@ -106,13 +106,11 @@ function handleLocalStorage(e) {
     if (e.target == document.querySelector(".save")) {
         localStorage.setItem("main", document.querySelector("main").innerHTML);//save the whole main element into storage
         showPopup("Saved!", "green");
-
     }
     else if (e.target == document.querySelector(".remove")) {
         localStorage.removeItem('main');// remove it from local storage
         const removed = document.querySelector(".removed");
         showPopup("Removed!", "red");
-
     }
 }
 

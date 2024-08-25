@@ -78,7 +78,7 @@ function handleSubmit(event) {
                 }
             }
             else {
-                alert("The city is not found");
+                showPopup("The city is not found", "red");
             }
 
         })
@@ -87,42 +87,43 @@ function handleSubmit(event) {
             });
     }
     else {
-        alert("please enter a valid date (less the 16 days)");
+        showPopup("Enter a valid date (less the 16 days)", "red");
     }
 
 }
+// function to show pop up messages
+function showPopup(message, color) {
+    popup.innerHTML = message;
+    popup.style.color = color;
+    popup.style.opacity = 1; // Show the popup
 
-document.querySelector("body").addEventListener("click", handleLocalStorage);
+    setTimeout(() => {
+        popup.style.opacity = 0; // Hide the popup after 1 second
+    }, 1000);
+}
+
 function handleLocalStorage(e) {
     if (e.target == document.querySelector(".save")) {
         localStorage.setItem("main", document.querySelector("main").innerHTML);//save the whole main element into storage
-        popup.innerHTML="Saved!";
-        popup.style.color="green";
-        popup.style.opacity = 1;// show a pop up to indicate that is is saved
-        setTimeout(() => {
-            popup.style.opacity = 0;
-        }, 1000);
+        showPopup("Saved!", "green");
+
     }
     else if (e.target == document.querySelector(".remove")) {
         localStorage.removeItem('main');// remove it from local storage
         const removed = document.querySelector(".removed");
-        popup.innerHTML="Removed!";
-        popup.style.color="red";
-        popup.style.opacity = 1;// show a pop up to indicate that is is removed
-        setTimeout(() => {
-            popup.style.opacity = 0;
-        }, 1000);
+        showPopup("Removed!", "red");
+
     }
 }
 
 document.addEventListener('DOMContentLoaded', function () {// on page load if there is main in local storage then attach it to innerhtml
     if (localStorage.getItem('main') !== null) {
         document.querySelector("main").innerHTML = localStorage.getItem("main");
-        popup.style.display="block";
     }
 });
 
 // Export the handleSubmit function
 export { handleSubmit };
+export { handleLocalStorage };
 export { postData };
 

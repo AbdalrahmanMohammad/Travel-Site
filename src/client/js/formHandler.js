@@ -66,6 +66,7 @@ function handleSubmit(event) {
                 min.innerHTML = `min: ${data.forecast.min}`;
                 weatherDesc.innerHTML = data.forecast.desc;
                 remindingTime.innerHTML = `${city}, ${data.country} is ${remDays} day${remDays > 1 ? 's' : ''} away`;
+
                 if (data.photo == -1)// no image found
                 {
                     // if there is no image found show an image with this sentence on it (no image found)
@@ -89,6 +90,20 @@ function handleSubmit(event) {
     }
 
 }
+
+document.querySelector(".save").addEventListener("click", () => {// save whole main code into local storage
+    localStorage.setItem("main", document.querySelector("main").innerHTML);
+});
+document.querySelector(".remove").addEventListener("click", () => {// save main from local storage
+    localStorage.removeItem('main');
+});
+document.addEventListener('DOMContentLoaded', function () {// on page load if there is main in local storage then attach it to innerhtml
+    if (localStorage.getItem('main') !== null) {
+        document.querySelector("main").innerHTML = localStorage.getItem("main");
+    }
+});
+
+
 
 
 // Export the handleSubmit function

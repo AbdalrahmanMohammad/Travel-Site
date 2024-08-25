@@ -1,12 +1,9 @@
 
-// Check if the URL is valid
-function checkForDate(url) {
-    // regex pattern to check for URLs
-    const urlPattern = /^(https?:\/\/)?([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}(\/[^\s]*)?$/;
-
-
-    // Test if the input matches the regex pattern and it is not empty
-    return true;
+// Check if the Date is valid
+function checkForDate(date) {
+    let diffDays = Math.ceil((new Date(date) - new Date()) / (1000 * 60 * 60 * 24));// calculate days difference between now and the input data
+    // the input date should be not less than now date and the diffrence is less than 15 days
+    return diffDays<=15&&diffDays>=0;
 }
 
 export { checkForDate };

@@ -104,12 +104,17 @@ app.post('/getAll', async (req, res) => {
         ///////////////////////////////
 
         ////////////////////////////// get the photo
-        const photo = await getPhoto(city);
+        let photo = await getPhoto(city);
+        if(photo.hits.length == 0)// if no photo found for the city
+        {
+            photo = await getPhoto(country);// find a photo for the country
+        }
 
-        let ph = -1;// if the city is not found in the API then the values are -1
-        if (photo.hits.length > 0) {//if the city is found we get the values
+        let ph = -1;// if no photo found for the city nor the country in the API then the value are -1
+        if (photo.hits.length > 0) {//if a photo is found we get the values
             ph = photo.hits[0].largeImageURL;
         }
+        
         resp.photo = ph;
         ///////////////////////////////
 

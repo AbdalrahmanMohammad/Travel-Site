@@ -91,12 +91,28 @@ function handleSubmit(event) {
 
 }
 
-document.querySelector(".save").addEventListener("click", () => {// save whole main code into local storage
-    localStorage.setItem("main", document.querySelector("main").innerHTML);
-});
-document.querySelector(".remove").addEventListener("click", () => {// save main from local storage
-    localStorage.removeItem('main');
-});
+document.querySelector("body").addEventListener("click", handleLocalStorage);
+function handleLocalStorage(e) {
+    if (e.target == document.querySelector(".save")) {
+        localStorage.setItem("main", document.querySelector("main").innerHTML);//save the whole main element into storage
+        const saved = document.querySelector(".saved");
+        saved.style.opacity = 1;// show a pop up to indicate that is is saved
+        saved.style.display="block";
+        setTimeout(() => {
+            saved.style.opacity = 0;
+        }, 1000);
+    }
+    else if (e.target == document.querySelector(".remove")) {
+        localStorage.removeItem('main');// remove it from local storage
+        const removed = document.querySelector(".removed");
+        removed.style.opacity = 1;// show a pop up to indicate that is is removed
+        removed.style.display="block";
+        setTimeout(() => {
+            removed.style.opacity = 0;
+        }, 1000);
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function () {// on page load if there is main in local storage then attach it to innerhtml
     if (localStorage.getItem('main') !== null) {
         document.querySelector("main").innerHTML = localStorage.getItem("main");

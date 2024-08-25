@@ -76,53 +76,6 @@ async function getPhoto(city) {
     }
 }
 
-// // POST route to get coordinates
-// app.post('/coordinates', async (req, res) => {
-//     const { city } = req.body;
-
-//     if (!city) {
-//         return res.status(400).json({ error: 'Text is required' });
-//     }
-
-//     try {
-//         const result = await getCoordinates(city);
-//         res.json(result);
-//     } catch (error) {
-//         res.status(500).json({ error: error.message });
-//     }
-// });
-// // POST route to get photo
-// app.post('/photo', async (req, res) => {
-//     const { city } = req.body;
-
-//     if (!city) {
-//         return res.status(400).json({ error: 'Text is required' });
-//     }
-
-//     try {
-//         const result = await getPhoto(city);
-//         res.json(result);
-//     } catch (error) {
-//         res.status(500).json({ error: error.message });
-//     }
-// });
-// // POST route to get forecast
-// app.post('/forecast', async (req, res) => {
-//     const { lat } = req.body;
-//     const { lon } = req.body;
-
-//     if (!lat || !lon) {
-//         return res.status(400).json({ error: 'Text is required' });
-//     }
-
-//     try {
-//         const result = await getForecast(lat, lon);
-//         res.json(result);
-//     } catch (error) {
-//         res.status(500).json({ error: error.message });
-//     }
-// });
-
 // route to get all info
 app.post('/getAll', async (req, res) => {
     const { date, city } = req.body;// date is in this format yyyy-mm-dd to match weatherbit's response

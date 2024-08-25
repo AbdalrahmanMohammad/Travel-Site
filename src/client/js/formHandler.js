@@ -41,11 +41,9 @@ const postData = async (url = '', data = {}) => {
 }
 
 if (form) {
-    console.log("yees");
     form.addEventListener('submit', handleSubmit);
 }
 function handleSubmit(event) {
-    console.log("hello");
     event.preventDefault();
 
     // Get the Input date
@@ -57,28 +55,31 @@ function handleSubmit(event) {
     const min = document.querySelector(".temp span:last-child");
     const weatherDesc = document.querySelector(".desc");
     const remindingTime = document.querySelector(".rem-time");
-    const image=document.querySelector(".image");
+    const image = document.querySelector(".image");
 
     // If the date is within 16 days from this day complete the process
     if (checkForDate(date)) {
-        console.log("in the cluase");
         postData('http://localhost:8000/getAll', { "city": city, "date": date }).then(data => {
             console.log('Received data:', data);
-            let remDays = Math.ceil((new Date(date) - new Date()) / (1000 * 60 * 60 * 24));// calculate days difference between now and the input data
-            dest.innerHTML = `${city}, ${data.country}`;
-            dep.innerHTML = date;
-            max.innerHTML = `max: ${data.forecast.max}`;
-            min.innerHTML = `min: ${data.forecast.min}`;
-            weatherDesc.innerHTML = data.forecast.desc;
-            remindingTime.innerHTML = `${city}, ${data.country} is ${remDays} day${remDays > 1 ? 's' : ''} away`;
-            if(data.photo==-1)// no image found
-            {
-                // if there is no image found show an image with this sentence on it (no image found)
-                image.style.backgroundImage = `url("https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/330px-No-Image-Placeholder.svg.png?20200912122019")`;
+            if (Object.keys(data.forecast).length != 0) {// the city is found
+                let remDays = Math.ceil((new Date(date) - new Date()) / (1000 * 60 * 60 * 24));// calculate days difference between now and the input data
+                dest.innerHTML = `${city}, ${data.country}`;
+                dep.innerHTML = date;
+                max.innerHTML = `max: ${data.forecast.max}`;
+                min.innerHTML = `min: ${data.forecast.min}`;
+                weatherDesc.innerHTML = data.forecast.desc;
+                remindingTime.innerHTML = `${city}, ${data.country} is ${remDays} day${remDays > 1 ? 's' : ''} away`;
+                if (data.photo == -1)// no image found
+                {
+                    // if there is no image found show an image with this sentence on it (no image found)
+                    image.style.backgroundImage = `url("https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/330px-No-Image-Placeholder.svg.png?20200912122019")`;
+                }
+                else {
+                    image.style.backgroundImage = `url("${data.photo}")`;
+                }
             }
-            else{
-                image.style.backgroundImage = `url("${data.photo}")`;
-
+            else {
+                alert("The city is not found");
             }
 
         })

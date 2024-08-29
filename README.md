@@ -69,3 +69,12 @@ To run the tests for the project:
 
 ```bash
 npm run test
+```
+
+## See Travel-Site in Action
+
+![Recording 2024-08-30 at 00 39 29](https://github.com/user-attachments/assets/ca703c4b-a1bf-4ada-972f-37d09e2c17f9)
+
+
+
+
